@@ -1,10 +1,12 @@
 import { FaApple } from "react-icons/fa";
 import { useState } from "react";
+import {useNavigate} from "react-router-dom"
 import axios from "axios";
-
+import { useUser } from "../../context/UserProvider";
 //  import { Login } from "@mui/icons-material";
 
 function Login() {
+   const {onTokenHandeler, onNameHandeler}= useUser()
   const[error, setError] = useState();
   const [data, setData] = useState({
     appType:'music',
@@ -13,7 +15,7 @@ function Login() {
   
   });
 
-  
+  const navigate = useNavigate();
   const onchangeHandeler = (event)=>{
     setData({...data,[event.target.name]: event.target.value})
   }
@@ -22,7 +24,9 @@ function Login() {
   
   axios.post("https://academics.newtonschool.co/api/v1/user/login",data).then((responce)=>{
     console.log(responce);
-   
+    onTokenHandeler(responce.data.token)
+    onNameHandeler(responce.data.data.name)
+    navigate("/")
   }).catch((error)=>{
     console.log(error);
     if(error.response  && error.response.data.message){

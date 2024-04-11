@@ -14,6 +14,7 @@ function Signin() {
   });
 
   const navigate = useNavigate();
+  
   const onchangeHandeler = (event)=>{
     setData({...data,[event.target.name]: event.target.value})
   }
