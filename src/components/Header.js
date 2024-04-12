@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { Link } from 'react-router-dom';
 import { FaApple } from "react-icons/fa";
 import { CiMusicNote1 } from "react-icons/ci";
@@ -20,11 +20,11 @@ function Header() {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('name');
  }
-  const [value, setValue] = React.useState(30);
+  // const [value, setValue] = React.useState(30);
   
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  // const handleChange = (event, newValue) => {
+  //   setValue(newValue);
+  // };
   return (
     <div> 
       <nav className="flex">

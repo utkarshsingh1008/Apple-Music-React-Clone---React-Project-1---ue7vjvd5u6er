@@ -1,9 +1,27 @@
-import React from 'react'
+import {useState} from 'react'
 import { PiBrowsersThin } from "react-icons/pi";
 import { FaApple } from "react-icons/fa";
 import { FaPlay } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 function Sidebar() {
+
+    const [getSearch, setSearch] = useState('');
+
+    const onSearchDetails = (event) => {
+      const queryString = {
+        title: event.target.value
+      }
+      axios.get('https://academics.newtonschool.co/api/v1/music/song', {
+        params: {
+          search: JSON.stringify(queryString)
+        }
+      }).then((response) => {
+        setList(response.data.data);
+      }).catch((error) => {
+        console.log(error)
+      })
+    }
   return (
     <div>
            <div className="bg-gray-100  ">
@@ -16,6 +34,7 @@ function Sidebar() {
           <input
             type="text"
             placeholder="Search..."
+            onChange={onSearchDetails}
             className="px-4 mr-8 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500 ml-8 mt-4 w-30%"
           />
           <li className="text-1xl text-gray-400 ml-8 m-3 hover:bg-gray-300 p-2 rounded">
