@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Musiccard from "../Musiccard";
-import Musicplayer from "../Musicplayer";
+
+import { useUser } from "../../context/UserProvider";
 
 function Home() {
   const [list, setList] = useState([]);
   const [music, setMusic] = useState(null);
-
+  const { setAudioPlayer } = useUser();
+  const {search} = useUser();
   const listOfSong = async () => {
     axios
       .get("https://academics.newtonschool.co/api/v1/music/song")
@@ -21,17 +23,15 @@ function Home() {
   };
   useEffect(() => {
     listOfSong();
-    
   }, []);
 
-  const onMusicHandler=(index)=> {
+  const onMusicHandler = (index) => {
     debugger;
     console.log(index);
     let musiclist = list[index];
     setMusic(musiclist);
-  }
-
- 
+    setAudioPlayer(musiclist);
+  };
 
   return (
     <div
@@ -44,24 +44,38 @@ function Home() {
         marginBottom: "44",
       }}
     >
-      {list.map((obj, index) => (
-        <Musiccard
-          key={index}
-          title={obj.title}
-          thumbnail={obj.thumbnail}
-          artist={obj.artist}
-          id={index}
-          onMusicHandler={onMusicHandler}
-        />
-      ))}
+     {search.length <= 0 ? (
+  list.map((obj, index) => (
+    <Musiccard
+      key={index}
+      title={obj.title}
+      thumbnail={obj.thumbnail}
+      artist={obj.artist}
+      id={index}
+      onMusicHandler={onMusicHandler}
+    />
+  ))
+) : (
+  search.map((obj, index) => (
+    <Musiccard
+      key={index}
+      title={obj.title}
+      thumbnail={obj.thumbnail}
+      artist={obj.artist}
+      id={index}
+      onMusicHandler={onMusicHandler}
+    />
+  ))
+)}
 
-      {music && (
+
+      {/* {music && (
         <Musicplayer
           thumbnail={music.thumbnail}
           audio_url={music.audio_url}
           songId={music._id}
         />
-      )}
+      )} */}
     </div>
   );
 }

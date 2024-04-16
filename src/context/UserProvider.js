@@ -4,6 +4,8 @@ const userContext = createContext();
 export const UserProvider = ({ children })=> {
   const [name, setName] = useState(sessionStorage.getItem('name'));
   const [token, setToken] = useState(sessionStorage.getItem('token'));
+  const [audioPlayer, setAudioPlayer] = useState();
+  const [search, setSearch] = useState('');
 
   const onTokenHandeler = (data) => {
     setToken(data);
@@ -18,8 +20,12 @@ export const UserProvider = ({ children })=> {
   const object = {
     token,
     name,
+    audioPlayer,
+    setAudioPlayer,
     onTokenHandeler,
     onNameHandeler,
+    search, setSearch
+
   };
   return (
     <div>
