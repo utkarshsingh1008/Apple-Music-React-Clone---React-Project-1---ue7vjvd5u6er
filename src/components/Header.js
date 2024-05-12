@@ -30,6 +30,7 @@ function Header() {
           width: "86%",
           top: "-24px",
           left: "14%",
+        
         }}
       >
         <div className="ml-4 md:ml-20 mt-6 w-full">

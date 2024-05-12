@@ -2,9 +2,9 @@ import { useUser } from "../context/UserProvider";
 import { FaRegHeart } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import H5AudioPlayer from 'react-h5-audio-player';
-import 'react-h5-audio-player/lib/styles.css';
-
+ import H5AudioPlayer from 'react-h5-audio-player';
+// import 'react-h5-audio-player/lib/styles.css';
+ import "./musicPlayer.css"
 function Musicplayer(props) {
   const { thumbnail, audio_url, songId } = props;
   const { token } = useUser();
@@ -51,13 +51,13 @@ function Musicplayer(props) {
         autoPlayAfterSrcChange={false}
       /> </div>
    <div>  <img
-        style={{ width: "100%", height: "35px", borderRadius: "2px", margin:"5px"}}
+        style={{ width: "100%", height: "35px", borderRadius: "2px", margin:"15px"}}
         src={thumbnail}
         alt="Thumbnail"
       />
 
 {token && ( 
-        <FaRegHeart 
+        <FaRegHeart style={{margin:"-25px"}}
           className={`text-xl cursor-pointer transition-colors duration-300 ${
             watchList ? 'text-red-500' : 'text-gray-500 hover:text-red-500'
           }`}

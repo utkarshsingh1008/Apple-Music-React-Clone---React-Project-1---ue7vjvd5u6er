@@ -4,7 +4,9 @@ import Musiccard from "../Musiccard";
 
 import { useUser } from "../../context/UserProvider";
 
+
 function Home() {
+   const {setSongId} = useUser();
   const [list, setList] = useState([]);
   const [music, setMusic] = useState(null);
   const { setAudioPlayer } = useUser();
@@ -15,7 +17,7 @@ function Home() {
       .then((res) => {
         console.log(res);
         setList(res.data.data);
-        console.log(list);
+        console.log(setList);
       })
       .catch((error) => {
         console.log(error);
@@ -29,6 +31,8 @@ function Home() {
     debugger;
     console.log(index);
     let musiclist = list[index];
+     console.log(list[index])
+    setSongId(list[index])
     setMusic(musiclist);
     setAudioPlayer(musiclist);
   };
@@ -40,11 +44,11 @@ function Home() {
         flexWrap: "wrap",
         gap: "16px",
         marginLeft: "29px",
-        marginTop: "30px",
-        marginBottom: "44",
+        marginTop: "90px",
+        
       }}
     >
-     {search.length <= 0 ? (
+     {search?.length <= 0 ? (
   list.map((obj, index) => (
     <Musiccard
       key={index}
@@ -54,28 +58,23 @@ function Home() {
       id={index}
       onMusicHandler={onMusicHandler}
     />
+  
   ))
 ) : (
-  search.map((obj, index) => (
-    <Musiccard
-      key={index}
-      title={obj.title}
-      thumbnail={obj.thumbnail}
-      artist={obj.artist}
-      id={index}
-      onMusicHandler={onMusicHandler}
-    />
-  ))
+  search!=null ? (
+    search?.map((obj, index) => (
+      <Musiccard
+        key={index}
+        title={obj.title}
+        thumbnail={obj.thumbnail}
+        artist={obj.artist}
+        id={index}
+        onMusicHandler={onMusicHandler}
+      />
+    ))
+  ):(<div className ='m-48'> No Songs Found...</div>)
 )}
-
-
-      {/* {music && (
-        <Musicplayer
-          thumbnail={music.thumbnail}
-          audio_url={music.audio_url}
-          songId={music._id}
-        />
-      )} */}
+   
     </div>
   );
 }

@@ -5,7 +5,8 @@ export const UserProvider = ({ children })=> {
   const [name, setName] = useState(sessionStorage.getItem('name'));
   const [token, setToken] = useState(sessionStorage.getItem('token'));
   const [audioPlayer, setAudioPlayer] = useState();
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState([]);
+  const [songId, setSongId] = useState();
 
   const onTokenHandeler = (data) => {
     setToken(data);
@@ -24,7 +25,8 @@ export const UserProvider = ({ children })=> {
     setAudioPlayer,
     onTokenHandeler,
     onNameHandeler,
-    search, setSearch
+    search, setSearch,
+    songId,setSongId
 
   };
   return (
