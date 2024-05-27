@@ -6,7 +6,6 @@ import { useUser } from "../../context/UserProvider";
 
 
 function Home() {
-   const {setSongId} = useUser();
   const [list, setList] = useState([]);
   const [music, setMusic] = useState(null);
   const { setAudioPlayer } = useUser();
@@ -32,7 +31,6 @@ function Home() {
     console.log(index);
     let musiclist = list[index];
      console.log(list[index])
-    setSongId(list[index])
     setMusic(musiclist);
     setAudioPlayer(musiclist);
   };

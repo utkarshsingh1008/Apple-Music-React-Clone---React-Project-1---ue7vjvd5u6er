@@ -10,7 +10,7 @@ function Artist() {
   const navigate = useNavigate();
    
   const [song, setSong] = useState()
-  
+  const {setSongId}=useUser()
   function artistSong() {
     axios
       .get("https://academics.newtonschool.co/api/v1/music/artist")
@@ -29,17 +29,15 @@ function Artist() {
   }, []);
 
   const onMusicHandler = (index) => {
-    debugger;
     console.log(index);
-    let musiclist = artist[index];
-    // setMusic(musiclist);
-    // setAudioPlayer(musiclist);
     clickArtist(artist[index]._id);
   };
 
  const clickArtist =(songId)=>{
      axios.get(`https://academics.newtonschool.co/api/v1/music/artist/${songId}`).then((res)=>{
       setSong(res.data.data)
+      setSongId(res.data.data.songs)
+      console.log(res.data.data.songs)
       navigate(`/artistSong/${songId}`)
       console.log(res.data.data)
      }).catch((error)=>{

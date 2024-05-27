@@ -6,7 +6,7 @@ export const UserProvider = ({ children })=> {
   const [token, setToken] = useState(sessionStorage.getItem('token'));
   const [audioPlayer, setAudioPlayer] = useState();
   const [search, setSearch] = useState([]);
-  const [songId, setSongId] = useState();
+  const [songId, setSongId] = useState([]);
 
   const onTokenHandeler = (data) => {
     setToken(data);
