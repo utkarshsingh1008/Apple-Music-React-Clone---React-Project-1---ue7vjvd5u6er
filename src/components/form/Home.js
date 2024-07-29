@@ -36,11 +36,11 @@ function Home() {
   };
 
   return (
-    <div
+    <div className="flex-col lg:flex-row"
       style={{
         display: "flex",
         flexWrap: "wrap",
-        gap: "16px",
+        gap: "30px",
         marginLeft: "29px",
         marginTop: "90px",
         

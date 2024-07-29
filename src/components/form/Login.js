@@ -44,7 +44,7 @@ function Login() {
         X
       </button>
       <FaApple className=" text-gray-500 text-4xl mb-4" />
-      <h1 className="text-2xl font-bold mb-2">Sign In or Sign Up</h1>
+      <h1 className="text-2xl font-bold mb-2">Log In or Sign Up</h1>
       <p className="text-gray-600 mb-4">Enter your email to get started.</p>
       <input
         value={data.email}

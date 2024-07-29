@@ -11,6 +11,7 @@ import Library from "./Library";
 import Album from "./Album";
 import { useUser } from "../context/UserProvider";
 import Artistsong from "./Artistsong";
+import Mood from "./Mood";
 function App() {
   const { token } = useUser();
 
@@ -40,6 +41,7 @@ function App() {
             <Route path="/Signin" element={<Signin />} />
             <Route path="/album" element={<Album/>} />
             <Route path="/artist" element={<Artist/>} />
+            <Route path="/mood" element={<Mood/>} />
             <Route path="/artistSong/:id" element={<Artistsong/>} />
             <Route
               path="/Library"

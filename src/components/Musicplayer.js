@@ -1,71 +1,93 @@
-import { useUser } from "../context/UserProvider";
-import { FaRegHeart } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
- import H5AudioPlayer from 'react-h5-audio-player';
-// import 'react-h5-audio-player/lib/styles.css';
- import "./musicPlayer.css"
-function Musicplayer(props) {
-  const { thumbnail, audio_url, songId } = props;
-  const { token } = useUser();
-  const [watchList, setWatchlist] = useState(false);
-   
-  useEffect(() => {
-    setWatchlist(false);
-  }, [props])
+import { useUser } from "../providers/UserProvider";
+import ReactH5AudioPlayer from "react-h5-audio-player";
+import { FaVolumeDown, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import applelogo from '../assets/applelogo.svg'
+import './musicplayer.css'
 
-  const handleFavoriteClick = (songId) => {
+const MusicPlayer = (props) => {
+  const { title, thumbnail, audio_url, songId } = props;
+  const { getToken } = useUser();
+  const [volume, setVolume] = useState(1);
+  const [isMuted, setIsMuted] = useState(false);
+  const audioRef = useRef(null);
+  const [isClickPending, setIsClickPending] = useState(false); // Add state for debounce
+  const [isFavorited, setIsFavorited] = useState(false);
+  useEffect(() => {
+    setIsFavorited(false);
+  }, [props]);
+
+  const onClickHandler = (songId) => {
+    if (isClickPending) return; // Debounce: if a click is pending, don't proceed
+    setIsClickPending(true); // Set click pending
+    setTimeout(() => {
+      setIsClickPending(false); // Reset click pending after delay
+    }, 500); // Adjust delay as needed
+
     axios
       .patch(
-        'https://academics.newtonschool.co/api/v1/music/favorites/like',
+        "https://academics.newtonschool.co/api/v1/music/favorites/like",
         { songId: songId },
         {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            projectID: "f104bi07c490",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
       )
       .then((result) => {
         console.log(result);
-        setWatchlist(true);
+        alert(result.data.message);
+        setIsFavorited(true);
+        window.location.reload();
       })
-      .catch((err) => {
-        console.log(err);
-        // Handle error here
+      .catch((error) => {
+        console.log(error);
       });
   };
 
   return (
-    <div 
-    
-      style={{
-        flex: "0 0 calc(33.33% - 16px)",
-        maxWidth: "calc(33.33% - 16px)",
-        boxSizing: "border-box",
-        marginBottom: "10px",
-      
-      }}
-    ><div className="flex gap-4" >
-     <div> <H5AudioPlayer style={{height:"60px"}}
+    <section className="music-player" >
+      <ReactH5AudioPlayer
+        ref={audioRef}
         src={audio_url}
         autoPlayAfterSrcChange={false}
-      /> </div>
-   <div>  <img
-        style={{ width: "100%", height: "35px", borderRadius: "2px", margin:"15px"}}
-        src={thumbnail}
-        alt="Thumbnail"
+        volume={volume}
+        style={{ background: "lightgray", border: "none" }}
       />
-
-{token && ( 
-        <FaRegHeart style={{margin:"-25px"}}
-          className={`text-xl cursor-pointer transition-colors duration-300 ${
-            watchList ? 'text-red-500' : 'text-gray-500 hover:text-red-500'
-          }`}
-          onClick={() => handleFavoriteClick(songId)} 
+      <div
+        className="image-title"
+        style={{
+          gap: "10px",
+          justifyContent: "center",
+          marginLeft: "-172px",
+          marginTop:"-2%"
+        }}
+      >
+        <img
+          src={thumbnail || applelogo}
+          height={"50"}
+          width={"50"}
+          className="bannerImg"
+          alt=""
+          style={{ marginTop: "17px", marginLeft: "-320%" }}
         />
-      )}
-   </div></div></div>
-  );
-}
+      </div>
 
-export default Musicplayer;
+      <div className="nav-control">
+        <div>
+          <span
+            style={{ fontSize: "12px", width: "130px", marginTop: "10px", marginLeft:'360%' }}
+            onClick={(e) => {e.preventDefault(); onClickHandler(songId);}}
+          >
+            {localStorage.getItem("token")&&  <FavoriteIcon style={{ color: isFavorited ? 'red' : 'white', fontSize: isFavorited ? '42px' : '30px' }} />}
+          </span>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default MusicPlayer;

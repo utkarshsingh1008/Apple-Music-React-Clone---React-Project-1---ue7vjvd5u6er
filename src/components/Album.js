@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Musiccard from "./Musiccard";
 
-function Album(props) {
+function Album() {
     
     const [album, setAlbum] = useState([]);
     const [music, setMusic] = useState(null);
@@ -16,6 +16,8 @@ function Album(props) {
         setMusic(musiclist);
         setAudioPlayer(musiclist);
       };
+
+      
     const onFilterHandler = (input) => {
         const queryString = {
             featured: input
@@ -34,7 +36,7 @@ function Album(props) {
      },[])
 
 
-    return (
+    return  (
         <div >
             <div className="m-32 flex gap-32">
           <button onClick={() => onFilterHandler("Trending songs")} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

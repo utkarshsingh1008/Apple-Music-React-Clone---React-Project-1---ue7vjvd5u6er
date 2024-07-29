@@ -20,48 +20,43 @@ function Header() {
     sessionStorage.removeItem("name");
   };
 
-  
-
   return (
     <div>
       <nav
-        className="flex fixed"
+        className="flex fixed w-full top-0 left-0 bg-white z-50"
         style={{
-          width: "86%",
           top: "-24px",
-          left: "14%",
-        
         }}
       >
-        <div className="ml-4 md:ml-20 mt-6 w-full">
-      
-          <div className="bg-white border border-gray-300 flex justify-between text-gray-400" style={{height:"75px"}}>
-            <div
-              className="flex m-4 "
-              
-            >
+        <div className="sm:ml-72 mt-6 w-3/4 h-28">
+          <div className="bg-white border border-gray-300 flex justify-between text-gray-400 p-4">
+            <div className="flex items-center">
+              <CiMusicNote1 className="text-4xl mr-4" />
+              <FaApple className="text-4xl" />
             </div>
-     <div >      <Musicplayer
-                
+            <div className="flex-grow flex justify-center items-center">
+              <Musicplayer
                 thumbnail={audioPlayer?.thumbnail}
                 audio_url={audioPlayer?.audio_url}
                 songId={audioPlayer?._id}
-              /></div>
-            <div className="m-2 border border-gray-400 w-full md:w-1/2 md:ml-4 p-2 flex justify-between text-gray-400">
-              <CiMusicNote1 className="text-4xl" />
-              <FaApple className="text-4xl" />
-              <div></div>
+              />
             </div>
-
-            <Box sx={{ marginTop: "18px", width: 140 }}>
+            <Box
+              sx={{
+                display: {
+                  xs: "none",
+                  sm: "block",
+                },
+                marginTop: "18px",
+                width: 140,
+              }}
+            >
               <Stack
                 spacing={2}
                 direction="row"
                 sx={{ mb: 1 }}
                 alignItems="center"
-              >
-               
-              </Stack>
+              ></Stack>
             </Box>
 
             {!token && (

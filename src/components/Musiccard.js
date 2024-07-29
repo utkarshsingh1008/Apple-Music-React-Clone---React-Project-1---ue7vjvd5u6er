@@ -1,27 +1,48 @@
-import { useUser } from "../context/UserProvider";
+import { Grid, Typography } from "@mui/material";
 
-function Musiccard(props) {
-  const { thumbnail, id, onMusicHandler } = props;
-  // const [setSongId] = useUser();
-  // setSongId();
-  return (
-    <div
-      style={{
-        flex: "0 0 calc(20% - 16px)",
-        maxWidth: "calc(20% - 16px)",
-        maxHeight:"65%",
-        boxSizing: "border-box",
-        marginBottom: "16px",
-      }}
-    >
-      <img
-        onClick={() => onMusicHandler(id)}
-         style={{height:"80%"}}
-        src={thumbnail}
-        alt="Thumbnail"
-      />
-    </div>
-  );
+function MusicCard(props) {
+    const { title, thumbnail, artist, id, onMusicHandler } = props;
+
+    const artistList = artist.map((item) => item.name).join(" & ");
+
+    return (
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+            <div
+                className="musicCard"
+                style={{
+                    padding: "20px",
+                    borderRadius: "12px",
+                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                }}
+            >
+                <img
+                    src={thumbnail}
+                    alt=""
+                    className="bannerImg"
+                    onClick={() => onMusicHandler(id)}
+                    style={{ width: "100%", height: "auto", borderRadius: "12px",paddingBottom:"5px"}}
+                />
+                <Typography
+                    variant="h6"
+                    className="music-title"
+                    // align="center"
+                    style={{
+                        marginTop: "10px",
+                        textOverflow: "ellipsis", // Sets ellipsis (...) for overflow
+                        whiteSpace: "nowrap", // Prevents text wrapping
+                        overflow: "hidden",
+                        fontSize: "16px",
+                    }}
+                >
+                   {artistList}
+                   
+                </Typography>
+                <Typography variant="body2" className="artist" >
+                  {title}
+                </Typography>
+            </div>
+        </Grid>
+    );
 }
 
-export default Musiccard;
+export default MusicCard;
