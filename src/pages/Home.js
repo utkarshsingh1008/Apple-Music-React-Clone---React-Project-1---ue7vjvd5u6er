@@ -3,10 +3,12 @@ import { useNavigate } from "react-router";
 import homeImage from '../assets/homeImage.webp' // Import your CSS file for styling
 import three from '../assets/three.svg'
 import FloatingAD from "./FloatingAD";
+import Footer from "./Footer";
+import AboveFooter from "./AboveFooter";
 const StartPage = () => {
   const navigate = useNavigate();
   return (
-    <div className="home-container">
+    <div className="home-container" >
       <div className="content-container">
         <img src={three} alt="" />
        
@@ -38,6 +40,9 @@ const StartPage = () => {
         />
       </div>
       <FloatingAD />
+      <div>
+    
+      <Footer/></div>
     </div>
   );
 };

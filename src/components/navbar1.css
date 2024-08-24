@@ -91,7 +91,7 @@
     display:block;
  }
 
- @media(min-width:768px){
+ @media(min-width:1024px){
     .drawer{
         display: none;
     }
@@ -156,3 +156,22 @@
         width: 50px;
     }
 }
+@media (min-width: 601px) and (max-width: 768px) {
+    .navbar {
+      justify-content: space-evenly;
+    }
+    .nav-controls {
+      width: 250px;
+    }
+    .volume-control {
+      display: none;
+    }
+    .logs {
+      width: 300px;
+    }
+    .icon-container {
+      margin-right: 100px;
+    }
+  }
+
+  

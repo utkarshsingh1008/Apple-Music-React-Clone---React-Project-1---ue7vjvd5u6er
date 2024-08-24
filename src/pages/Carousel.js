@@ -14,7 +14,7 @@ function Carousel() {
         try {
             const res = await axios.get('https://academics.newtonschool.co/api/v1/music/song?filter={"featured":"Evergreen melodies"}', {
                 headers: {
-                    'projectId': 'f104bi07c490'
+                    'projectId': 'cp0doe0u3fx9'
                 }
             });
             setData(res.data.data);
@@ -114,7 +114,7 @@ const carouselItemStyle = {
     textAlign: 'center'
 };
 const carouselImageStyle = {
-    width: '100%',
+    width: '99%',
     height: 'auto',
     maxHeight: '300px',
     borderRadius: '20px',

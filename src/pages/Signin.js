@@ -26,7 +26,7 @@ function Signin() {
     event.preventDefault();
     axios.post("https://academics.newtonschool.co/api/v1/user/signup",{
       headers: {
-        projectID: 'f104bi07c490'
+        projectID: 'cp0doe0u3fx9'
       }
     })
       .then((response) => {
@@ -107,7 +107,7 @@ function Signin() {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2, bgcolor: "red", color: "white" }}
+            sx={{ mt: 3, mb: 2, bgcolor: "pink", color: "white" }}
           >
             Continue
           </Button>

@@ -34,7 +34,7 @@ function ChangePassword() {
             }, {
                 headers: {
                     'Content-Type': 'application/json',
-                    projectId: 'f104bi07c490',
+                    projectId: 'cp0doe0u3fx9',
                     Authorization:`Bearer ${localStorage.getItem("token")}`
                 }
             });

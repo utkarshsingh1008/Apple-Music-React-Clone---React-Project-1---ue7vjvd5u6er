@@ -27,7 +27,7 @@ function Browse() {
         try {
             const res = await axios.get('https://academics.newtonschool.co/api/v1/music/song', {
                 headers: {
-                    'projectId': 'f104bi07c490'
+                    'projectId': 'cp0doe0u3fx9'
                 }
             });
             setData(res.data.data);
@@ -48,7 +48,7 @@ function Browse() {
         try {
             const res = await axios.get(url, {
                 headers: {
-                    'projectId': 'f104bi07c490'
+                    'projectId': 'cp0doe0u3fx9'
                 }
             });
             setData(res.data.data);
@@ -67,7 +67,7 @@ function Browse() {
     //     try {
     //         const response = await axios.get(`https://academics.newtonschool.co/api/v1/music/artist/${artistId}/songs`, {
     //             headers: {
-    //                 projectId: 'f104bi07c490'
+    //                 projectId: 'cp0doe0u3fx9'
     //             }
     //         });
     //         setData(response.data.data);

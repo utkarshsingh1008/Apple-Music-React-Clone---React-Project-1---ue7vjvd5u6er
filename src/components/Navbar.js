@@ -3,7 +3,7 @@ import { AppBar, Toolbar, IconButton, Button, Box, useMediaQuery, useTheme, Draw
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../providers/UserProvider';
-import MusicPlayer from './Musicplayer';
+import MusicPlayer from './MusicPlayer';
 import signin from '../assets/signin.svg';
 import Sidebar from './Sidebar';
 

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Grid } from '@mui/material';
-import MusicCard from '../components/Musiccard';
+import MusicCard from '../components/MusicCard';
 import { useUser } from '../providers/UserProvider';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -22,7 +22,7 @@ function TopTwenty() {
     try {
       const response = await axios.get('https://academics.newtonschool.co/api/v1/music/song?filter={"featured":"Top 20 of this week"}', {
         headers: {
-          projectId: 'f104bi07c490',
+          projectId: 'cp0doe0u3fx9',
         },
       });
       setFilterSongs(response.data.data);
@@ -67,6 +67,8 @@ function TopTwenty() {
         autoPlaySpeed={500}
         keyBoardControl={true}
         transitionDuration={500}
+        containerClass="carousel-container"
+        removeArrowOnDeviceType={['tablet', 'mobile', 'laptop', 'desktop']}
       >
         {filterSongs.map((obj, index) => (
           <div key={index} style={{ padding: '0 10px' }}>

@@ -39,11 +39,12 @@ function SignUp() {
 
         axios.post('https://academics.newtonschool.co/api/v1/user/signup', getData, {
             headers: {
-                projectID: 'f104bi07c490'
+                projectID: 'cp0doe0u3fx9'
             }
         }).then((result) => {
-            console.log(result);
-            navigate('/login');
+            localStorage.setItem('name', result.data.data.user.name);
+            localStorage.setItem('token', result.data.token);
+            navigate('/');
         }).catch((error) => {
             console.log(error);
             if (error.response && error.response.data.message) {

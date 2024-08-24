@@ -10,7 +10,7 @@ function Artist() {
         try {
             const res = await axios.get('https://academics.newtonschool.co/api/v1/music/artist', {
                 headers: {
-                    'projectId': 'f104bi07c490'
+                    'projectId': 'cp0doe0u3fx9'
                 }
             });
             setArtist(res.data.data);
@@ -28,7 +28,7 @@ function Artist() {
         try {
           const response = await axios.get(`https://academics.newtonschool.co/api/v1/music/artist/${songId}`, {
             headers: {
-              projectId: 'f104bi07c490'
+              projectId: 'cp0doe0u3fx9'
             }
           });
           setSongId(response.data.data);

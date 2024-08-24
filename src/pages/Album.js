@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import MusicCard from '../components/Musiccard';
+import MusicCard from '../components/MusicCard';
 import { useUser } from '../providers/UserProvider';
 import { useNavigate } from 'react-router-dom';
 import { CircularProgress, Typography } from '@mui/material';
@@ -20,7 +20,7 @@ function Album() {
       try {
         const response = await axios.get('https://academics.newtonschool.co/api/v1/music/album', {
           headers: {
-            projectId: 'f104bi07c490'
+            projectId: 'cp0doe0u3fx9'
           }
         });
         setAlbumData(response.data.data);
@@ -40,7 +40,7 @@ function Album() {
     try {
       const response = await axios.get(`https://academics.newtonschool.co/api/v1/music/album/${songId}`, {
         headers: {
-          projectId: 'f104bi07c490'
+          projectId: 'cp0doe0u3fx9'
         }
       });
       setSongId(response.data.data);
@@ -84,6 +84,8 @@ function Album() {
           autoPlaySpeed={500} // Changed to 5000ms (5 seconds) for better user experience
           keyBoardControl={true}
           transitionDuration={500}
+          containerClass="carousel-container"
+          removeArrowOnDeviceType={['tablet', 'mobile', 'laptop', 'desktop']}
         >
           {albumData.map(album => (
             <div key={album._id} style={{ padding: '0 10px' }}>

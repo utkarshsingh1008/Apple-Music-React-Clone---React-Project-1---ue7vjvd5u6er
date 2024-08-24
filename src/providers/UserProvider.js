@@ -9,6 +9,8 @@ export const UserProvider = ({children})=>{
     const [name,setName] = useState(localStorage.getItem('name'));
     const [searchData, setSearchData] = useState([]);
     const [songId, setSongId] = useState('');
+  
+    
  
     const [getList, setList]= useState([]);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);

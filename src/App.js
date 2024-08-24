@@ -55,7 +55,7 @@ function App() {
     <div className="main-container">
       <BrowserRouter>
         <div className="leftcontent">
-          <MediaQuery minWidth={768}>
+          <MediaQuery minWidth={1024}>
             <Sidebar />
           </MediaQuery>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Typography, Button, Box, Grid } from '@mui/material';
-import MusicCard from '../components/Musiccard';
+import MusicCard from '../components/MusicCard';
 import { useUser } from '../providers/UserProvider';
 import '../App.css';
 
@@ -36,7 +36,7 @@ function Moods() {
     try {
       const response = await axios.get(url, {
         headers: {
-          projectId: 'f104bi07c490',
+          projectId: 'cp0doe0u3fx9',
         },
       });
       setFilterSongs(response.data.data);
@@ -55,11 +55,14 @@ function Moods() {
   return (
     <>
       <Typography variant="h3" sx={{ marginLeft: '30px' }}>Moods</Typography>
-      <Box sx={{ display: 'flex', gap: '8px', marginLeft: '30px', marginTop: '20px' }}>
-        <Button variant="contained" style={{ backgroundColor: typeMood === "happy" ? "lightgreen" : "" }} onClick={() => onFilterSelection("happy")}>Happy Songs</Button>
-        <Button variant="contained" style={{ backgroundColor: typeMood === "sad" ? "lightgreen" : "" }} onClick={() => onFilterSelection("sad")}>Sad Songs</Button>
-        <Button variant="contained" style={{ backgroundColor: typeMood === "excited" ? "lightgreen" : "" }} onClick={() => onFilterSelection("excited")}>Excited Songs</Button>
-        <Button variant="contained" style={{ backgroundColor: typeMood === "romantic" ? "lightgreen" : "" }} onClick={() => onFilterSelection("romantic")}>Romantic Songs</Button>
+      <Box sx={{ display: 'flex',  flexDirection: {
+      xs: 'column', // apply 'column' for extra-small screens and up
+      sm: 'row',    // apply 'row' for small screens and up
+    }, gap: '8px', marginLeft: '30px', marginTop: '20px' }}>
+        <Button variant="contained" style={{ backgroundColor: typeMood === "happy" ? "lightgray" : "" }} onClick={() => onFilterSelection("happy")}>Happy Songs</Button>
+        <Button variant="contained" style={{ backgroundColor: typeMood === "sad" ? "lightgray" : "" }} onClick={() => onFilterSelection("sad")}>Sad Songs</Button>
+        <Button variant="contained" style={{ backgroundColor: typeMood === "excited" ? "lightgray" : "" }} onClick={() => onFilterSelection("excited")}>Excited Songs</Button>
+        <Button variant="contained" style={{ backgroundColor: typeMood === "romantic" ? "lightgray" : "" }} onClick={() => onFilterSelection("romantic")}>Romantic Songs</Button>
       </Box>
       <Grid container spacing={2} justifyContent="center" style={{ marginTop: '20px', marginLeft: '10px', marginRight: '10px' }}>
         {filterSongs.map((obj, index) => (

@@ -20,7 +20,7 @@ function MusicCard(props) {
                     alt=""
                     className="bannerImg"
                     onClick={() => onMusicHandler(id)}
-                    style={{ width: "100%", height: "auto", borderRadius: "12px",paddingBottom:"5px"}}
+                    style={{ width: "97.5%", height: "auto", borderRadius: "12px",padding:"5px"}}
                 />
                 <Typography
                     variant="h6"

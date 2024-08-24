@@ -21,13 +21,14 @@ function Library() {
 
     axios.patch('https://academics.newtonschool.co/api/v1/music/favorites/like', { songId: songId }, {
       headers: {
-        projectID: 'f104bi07c490',
+        projectID: 'cp0doe0u3fx9',
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }
     }).then((result) => {
       // listOfLibrary();
       setLoading(false);
       setList(result.data.data.songs); // Reset loading state after API call is complete
+      setAudioPlayerSong(null);
     }).catch((error) => {
       console.log(error);
       setLoading(false); // Reset loading state in case of error
@@ -37,11 +38,11 @@ function Library() {
   const listOfLibrary = () => {
     axios.get('https://academics.newtonschool.co/api/v1/music/favorites/like', {
       headers: {
-        projectID: 'f104bi07c490',
+        projectID: 'cp0doe0u3fx9',
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }
     }).then((result) => {
-      console.log(result.data.data.songs)
+      // console.log(result.data.data.songs)
       setList(result.data.data.songs);
     }).catch((err) => {
       console.log(err);
@@ -49,9 +50,12 @@ function Library() {
   }
 
   const playHandler = (song) => {
-    // Implement play functionality here
-    console.log("Playing:", song);
-    setAudioPlayerSong(song); // Assuming setAudioPlayerSong updates the currently playing song
+    setAudioPlayerSong(song); // Set the song in the global state
+    const audioElement = document.getElementById('audioPlayer'); // Get the audio element from Navbar1
+    if (audioElement) {
+      audioElement.src = song.audio_url; // Set the song source
+      audioElement.play(); // Play the song immediately
+    }
   };
 
   return (
@@ -76,7 +80,7 @@ function Library() {
                   <TableCell>
                   <Button onClick={(e) => {  e.preventDefault();  playHandler(obj);}} variant="contained"color="primary">Play</Button>
                    <Button onClick={(e) => { e.preventDefault(); deleteHandler(obj._id); }} style={{backgroundColor:'rgb(255,0,0)', color:'white', fontWeight:'600', marginLeft: '8px'}} >
-  Delete
+  Remove
 </Button>
 
                   </TableCell>

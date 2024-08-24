@@ -22,7 +22,7 @@ import './sidebar.css';
 
 const SidebarCol = styled('div')(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
-    padding: '20px',
+    padding: '10px',
   },
 }));
 
@@ -30,7 +30,7 @@ const LightGrayBox = styled(Box)({
   background: 'lightgray',
 });
 
-function Sidebar() {
+function Sidebar({ onItemSelect }) {
   const { setSearchData, setErrorMessage } = useUser();
   const navigate = useNavigate();
   const [refreshKey, setRefreshKey] = useState(0);
@@ -69,7 +69,7 @@ function Sidebar() {
           search: JSON.stringify(queryString)
         },
         headers: {
-          projectID: 'f104bi07c490'
+          projectID: 'cp0doe0u3fx9'
         }
       });
       setSearchData(response.data.data);
@@ -81,12 +81,19 @@ function Sidebar() {
 
   const handleNavigation = (path) => {
     setSearchText('');
+  
+        if (typeof onItemSelect === 'function') {
+      onItemSelect();
+    }
+
     navigate(path);
+
   };
 
   return (
     <>
-      <Box sx={{ flexGrow: 1, position: 'sticky', zIndex: '1', top: '0px', background: 'rgb(249,249,249)' }}>
+    
+      <Box sx={{ flexGrow: 1, position: 'fixed', zIndex: '1', top: '0px', background: 'rgb(249,249,249)',width:'305px' }}>
         <SidebarCol>
           <Grid container direction="column" spacing={2}>
             <Grid item>
@@ -104,6 +111,7 @@ function Sidebar() {
                   variant="outlined"
                   value={searchText}
                   onChange={onSearchDetails}
+                  style={{ width: '75%' }}
                 />
                 <div className='searchIcon-navbar' style={{ marginLeft: '3%', marginBottom: '10%' }}>
                   <img src={four} alt="" />
@@ -132,30 +140,30 @@ function Sidebar() {
                 </ListItem>
                 <Divider />
                 <Grid item>
-                  <h3 style={{ marginLeft: '5%' }}>PlayLists</h3>
-                  <ListItem button onClick={() => handleNavigation('/moods')} style={{ textDecoration: 'none', color: 'black', fontSize: '18px', marginLeft: '20px' }}>
-                    <ListItemText primary="Moods" />
+                  <h3 style={{ marginLeft: '5%', marginTop:'12.5px' }}>PlayLists</h3>
+                  <ListItem button onClick={() => handleNavigation('/moods')}  style={{ textDecoration: 'none', color: 'black', fontSize: '18px' }}>
+                    <ListItemText primary="Moods"  style={{ marginBottom: '12.5px',marginTop:'12.5px' }}/>
                   </ListItem>
-                  <ListItem button onClick={() => handleNavigation('/album1')} style={{ textDecoration: 'none', color: 'black', fontSize: '18px', marginLeft: '20px' }}>
-                    <ListItemText primary="Albums" />
+                  <ListItem button onClick={() => handleNavigation('/album1')} style={{ textDecoration: 'none', color: 'black', fontSize: '18px'}}>
+                    <ListItemText primary="Albums" style={{ marginBottom: '12.5px',marginTop:'12.5px' }} />
                   </ListItem>
                   {localStorage.getItem("token") && (
-                    <ListItem button onClick={handleFavoritesClick} style={{ textDecoration: 'none', color: 'black', fontSize: '18px', marginLeft: '20px' }}>
+                    <ListItem button onClick={handleFavoritesClick} style={{ textDecoration: 'none', color: 'black', fontSize: '18px' }}>
                       <ListItemIcon>
                         <FavoriteIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Favorites" />
+                      <ListItemText primary="Favorites" style={{ marginBottom: '12.5px',marginTop:'12.5px' }} />
                     </ListItem>
                     
                   )}
-                  {localStorage.getItem("token") && ( <ListItem button onClick={() => handleNavigation('/changepassword')} style={{ textDecoration: 'none', color: 'black', fontSize: '18px', marginLeft: '20px' }}>
-                    <ListItemText primary="Change Password" />
+                  {localStorage.getItem("token") && ( <ListItem  onClick={() => handleNavigation('/changepassword')} style={{ textDecoration: 'none', color: 'black', fontSize: '18px' }}>
+                    <ListItemText primary="Change Password" style={{ marginBottom: '12.5px',marginTop:'32.5px' }}/>
                   </ListItem>)}
                  
                 </Grid>
                 <Divider />
                 <Grid item>
-                  <p style={{ marginLeft: '20px' }}>
+                  <p style={{ marginLeft: '20px',marginTop:'50px', marginBottom:"200px" }}>
                     <img src={nine} alt="" /> Open in Music <img src={ten} alt="" />
                   </p>
                 </Grid>
@@ -203,6 +211,7 @@ function Sidebar() {
           </Box>
         </Drawer>
       </Box>
+     
     </>
   );
 }
