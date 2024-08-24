@@ -81,6 +81,7 @@ function Album() {
           responsive={responsive}
           infinite={true}
           autoPlay={true}
+  
           autoPlaySpeed={500} // Changed to 5000ms (5 seconds) for better user experience
           keyBoardControl={true}
           transitionDuration={500}
