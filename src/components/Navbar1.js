@@ -224,7 +224,7 @@ const Navbar1 = (props) => {
         style={{
           flexGrow: 1,
           position: "sticky",
-          width: "100%",
+          width: "98%",
           zIndex: "1",
           top: "0px",
         }}
