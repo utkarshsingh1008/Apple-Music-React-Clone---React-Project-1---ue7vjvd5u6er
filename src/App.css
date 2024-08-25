@@ -33,7 +33,7 @@
   }
 
   .leftcontent, .rightcontent {
-    width: 100%;
+    width: 93%;
   }
 }
 @media (max-width: 600px) {

@@ -75,18 +75,12 @@
     .nav-controls{
     width: 200px;
 }
-    /* .navbar {
-        justify-content: space-between;
-    } */
-
+ 
     .volume-control {
         display: none;
     }
 }
-/* navbar1.css */
-/* .applelogo{
-    display: none;
-} */
+
  .drawer{
     display:block;
  }
