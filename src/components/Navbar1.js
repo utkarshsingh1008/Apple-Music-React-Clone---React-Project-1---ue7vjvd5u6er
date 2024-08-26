@@ -114,7 +114,7 @@ const Navbar1 = (props) => {
   };
 
   const handleLogin = () => {
-    navigate("/login");
+    navigate("/signUp");
   };
 
   const handleChangePassword = () => {
@@ -412,115 +412,169 @@ const Navbar1 = (props) => {
         </div>
 
         <div className="nav-login">
-          <Button onClick={handleOpen}>
-            <div>
-              {localStorage.getItem("token") ? (
-                <div
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "50%",
-                    backgroundColor: "blue",
-                    color: "white",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontSize: "24px",
-                  }}
-                >
-                  {localStorage.getItem("name") &&
-                    localStorage.getItem("name")[0]}
-                </div>
-              ) : (
-                <div style={{  width: "100px",
-                  borderRadius: "50%",
-                  backgroundColor: "#f9f9f9",
-                  marginRight: "5px"
-                 }}>User Profile</div> 
-              )}
-            </div>
-          </Button>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            style={{ marginLeft: "85%", marginTop: "-390px" }}
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems:'center',
-                justifyContent:"center",
-
-                width: "200px",
-                height: "150px",
-                backgroundColor: "lightyellow",
-                borderRadius: "10px",
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                marginTop: "-30px",
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              {!localStorage.getItem("token") ? (
-                <button onClick={()=>{handleLogin();handleClose()}} 
-                style={{fontSize:'18px',backgroundColor:'pink',
-                color:'white',borderRadius:'5px',fontWeight:'600',
-                width:'150px'}}>Sign In</button>
-              ) : (
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "baseline",
-                    gap: "10px",
-                    backgroundColor: "lightyellow",
-                  }}
-                >
-                  <button
-                    style={{
-                      textDecoration: "none",
-                      borderRadius: "6px",
-                      color: "black",
-                      border: "none",
-                      backgroundColor: "lightyellow",
-                    }}
-                  >
-                    {localStorage.getItem("name").toUpperCase()}
-                  </button>
-                  <button
-                    style={{
-                      borderRadius: "6px",
-                      color: "black",
-                      border: "none",
-                      textDecoration: "none",
-                      backgroundColor: "lightyellow",
-                    }}
-                    onClick={handleChangePassword}
-                  >
-                    Change Password
-                  </button>
-
-                  <button
-                    style={{
-                      textDecoration: "none",
-                      borderRadius: "6px",
-                      color: "black",
-                      border: "none",
-                      backgroundColor: "lightyellow",
-                    }}
-                    onClick={logoutHandler}
-                  >
-                    {/* <img src={signin} alt="" style={{ marginRight: '4px' }} /> */}
-                    Sign out
-                  </button>
-                </div>
-              )}
-            </div>
-          </Modal>
+  <Button onClick={() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/signUp"); // Navigate directly to /signUp if not signed in
+    } else {
+      handleOpen(); // Open the modal if already signed in
+    }
+  }}>
+    <div>
+      {localStorage.getItem("token") ? (
+        <div
+          style={{
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
+            backgroundColor: "blue",
+            color: "white",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: "24px",
+          }}
+        >
+          {localStorage.getItem("name") && localStorage.getItem("name")[0]}
         </div>
+      ) : (
+        <div
+          style={{
+            width: "100px",
+            borderRadius: "20%",
+            backgroundColor: "lightblue",
+            marginRight: "5px",
+          }}
+        >
+          Sign In
+        </div>
+      )}
+    </div>
+  </Button>
+  <Modal
+    open={open}
+    onClose={handleClose} // Close modal when clicking outside or pressing Esc
+    aria-labelledby="modal-modal-title"
+    aria-describedby="modal-modal-description"
+    style={{
+      marginLeft: "87%",
+      marginRight: "auto",
+      marginTop: "10vh",
+      maxWidth: "200px",
+    }}
+  >
+    <div
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "20px",
+        width: "100%",
+        backgroundColor: "white",
+        borderRadius: "10px",
+        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+        maxWidth: "120px",
+      }}
+    >
+      {/* X Button */}
+      <button
+        onClick={handleClose}
+        style={{
+          position: "absolute",
+          top: "-1px",
+          right: "4px",
+          backgroundColor: "transparent",
+          border: "none",
+          fontSize: "26px",
+          cursor: "pointer",
+        }}
+      >
+        &times;
+      </button>
+
+      {!localStorage.getItem("token") ? (
+        <button
+          onClick={() => {
+            handleLogin();
+            handleClose();
+          }}
+          style={{
+            fontSize: "18px",
+            backgroundColor: "#FF6F61",
+            color: "white",
+            borderRadius: "5px",
+            fontWeight: "600",
+            padding: "10px 20px",
+            marginBottom: "10px",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          Sign In
+        </button>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "10px",
+            width: "100%",
+          }}
+        >
+          <button
+            style={{
+              textDecoration: "none",
+              borderRadius: "6px",
+              color: "black",
+              backgroundColor: "#f0f0f0",
+              padding: "10px",
+              width: "100%",
+              textAlign: "center",
+              cursor: "default",
+            }}
+          >
+            {localStorage.getItem("name").toUpperCase()}
+          </button>
+          <button
+            style={{
+              borderRadius: "6px",
+              color: "black",
+              backgroundColor: "#FFEB3B",
+              padding: "10px",
+              width: "100%",
+              textAlign: "center",
+              border: "none",
+              cursor: "pointer",
+            }}
+            onClick={handleChangePassword}
+          >
+            Change Password
+          </button>
+
+          <button
+            style={{
+              textDecoration: "none",
+              borderRadius: "6px",
+              color: "white",
+              backgroundColor: "#FF6F61",
+              padding: "10px",
+              width: "100%",
+              textAlign: "center",
+              border: "none",
+              cursor: "pointer",
+            }}
+            onClick={logoutHandler}
+          >
+            Sign Out
+          </button>
+        </div>
+      )}
+    </div>
+  </Modal>
+</div>
+
       </div>
     </>
   );

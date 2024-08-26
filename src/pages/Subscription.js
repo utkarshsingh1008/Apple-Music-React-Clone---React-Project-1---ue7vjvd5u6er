@@ -1,128 +1,64 @@
 import React from "react";
 import styled from "styled-components";
-import three from '../assets/three.svg'
-import { toast } from "react-toastify";
+import three from '../assets/three.svg';
 
 const Subscription = () => {
-  function toast(message) {
-  const toastElement = document.createElement('div');
-  toastElement.innerHTML = message;
-  toastElement.style.position = 'fixed';
-  toastElement.style.zIndex = '9999';
-  toastElement.style.width = '300px';
-  toastElement.style.textAlign = 'center';
-  toastElement.style.fontWeight = 'bold';
-  toastElement.style.display = 'flex';
-  toastElement.style.alignItems = 'center';
-  toastElement.style.justifyContent = 'center';
-  toastElement.style.height = '300px';
-  toastElement.style.top = '50%';
-  toastElement.style.left = '50%';
-  toastElement.style.transform = 'translate(-50%, -50%)';
-  toastElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-  toastElement.style.color = '#fff';
-  toastElement.style.padding = '15px 20px';
-  toastElement.style.borderRadius = '10px';
-  toastElement.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.2)';
-  toastElement.style.fontSize = '18px';
-  toastElement.style.fontFamily = 'Arial, sans-serif';
-  toastElement.style.animation = 'fadeIn 0.5s';
-  document.body.appendChild(toastElement);
-  setTimeout(() => {
-    toastElement.style.animation = 'fadeOut 0.5s';
-    setTimeout(() => {
-      document.body.removeChild(toastElement);
-    }, 500); // Remove toast after 0.5 seconds
-  }, 1000); // Show toast for 3 seconds
-}
-
+  const showToast = (message) => {
+    const toastElement = document.createElement('div');
+    toastElement.innerHTML = message;
   
+    Object.assign(toastElement.style, {
+      position: 'fixed',
+      zIndex: '9999',
+      width: '300px',
+      textAlign: 'center',
+      fontWeight: 'bold',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '150px', // Reduced height for a more compact design
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      backgroundColor: '#333', // Darker background color for a modern look
+      color: '#fff', // White text for contrast
+      padding: '20px', // Increased padding for better spacing
+      borderRadius: '8px', // Slightly rounded corners for a smoother appearance
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)', // Softer shadow for depth
+      fontSize: '16px', // Slightly smaller font size for a balanced look
+      fontFamily: '"Roboto", sans-serif', // Modern font for better readability
+      animation: 'fadeIn 0.3s ease-in-out', // Smooth fade-in animation
+    });
+  
+    document.body.appendChild(toastElement);
+  
+    setTimeout(() => {
+      toastElement.style.animation = 'fadeOut 0.3s ease-in-out';
+      setTimeout(() => {
+        document.body.removeChild(toastElement);
+      }, 300); // Duration should match fade-out animation
+    }, 1500); // Toast will be visible for 1.5 seconds
+  };
+  
+
   return (
     <Container>
       <div className="big_container">
         <div className="logo_container">
-          <img
-            className="apple_logo"
-            src={three}
-            alt="logo"
-          />
+          <img className="apple_logo" src={three} alt="logo" />
         </div>
-
         <div className="plan_container">
-        <div className="plans" style={{
-  marginTop: "10px",
-  borderTopLeftRadius: "20px",
-  borderTopRightRadius: "20px",
-  borderBottomLeftRadius: "15px",
-  borderBottomRightRadius: "15px"
-}}>
-
-            <h2 style={{marginTop:"10px"}}>Voice Plan</h2>
-            <h3>$4.99/month</h3>
-            <hr />
-            <p>1 person</p>
-            <p>Siri on Apple device</p>
-            <p>Songs,playlists,stations</p>
-            <p>All Apple devices</p>
-            <button style={{
-  backgroundColor: "red",
-  color: "#ffffff",
-  padding: "10px 20px",
-  borderRadius: "5px",
-  border: "none",
-  cursor: "pointer"
-}} onClick={() => toast("Under Construction ....")}>Buy</button>
-          </div>
-
-          <div className="plans" style={{
-  marginTop: "10px",
-  borderTopLeftRadius: "20px",
-  borderTopRightRadius: "20px",
-  borderBottomLeftRadius: "15px",
-  borderBottomRightRadius: "15px"
-}}>
-            <h2 style={{marginTop:"10px"}}>Individual Plan</h2>
-            <h3>$9.99/month</h3>
-            <hr />
-            <p>1 person</p>
-            <p>Siri on Apple device</p>
-            <p>Songs,playlists,stations,videos</p>
-            <p>All Apple devices + supported </p>
-           <button style={{
-  backgroundColor: "red",
-  color: "#ffffff",
-  padding: "10px 20px",
-  borderRadius: "5px",
-  border: "none",
-  cursor: "pointer"
-}} onClick={() => toast("Under Construction ....")}>Buy</button>
-
-          </div>
-
-          <div className="plans" style={{
-  marginTop: "10px",
-  borderTopLeftRadius: "20px",
-  borderTopRightRadius: "20px",
-  borderBottomLeftRadius: "15px",
-  borderBottomRightRadius: "15px"
-}}>
-            <h2 style={{marginTop:"10px"}}>Family Plan</h2>
-            <h3>$14.99/month</h3>
-            <hr />
-            <p>6 people</p>
-            <p>Siri on Apple device</p>
-            <p>Songs,playlists,stations,videos</p>
-            <p>All Apple devices + supported</p>
-            <button style={{
-  backgroundColor: "red",
-  color: "#ffffff",
-  padding: "10px 20px",
-  borderRadius: "5px",
-  border: "none",
-  cursor: "pointer"
-}} onClick={() => toast("Under Construction ....")}>Buy</button>
-
-          </div>
+          {plans.map((plan) => (
+            <div className="plans" key={plan.name}>
+              <h2>{plan.name}</h2>
+              <h3>{plan.price}</h3>
+              <hr />
+              {plan.features.map((feature, index) => (
+                <p key={index}>{feature}</p>
+              ))}
+              <button onClick={() => showToast("Under Construction ....")}>Buy</button>
+            </div>
+          ))}
         </div>
       </div>
     </Container>
@@ -131,60 +67,109 @@ const Subscription = () => {
 
 export default Subscription;
 
+const plans = [
+  {
+    name: "Voice Plan",
+    price: "$4.99/month",
+    features: ["1 person", "Siri on Apple device", "Songs, playlists, stations", "All Apple devices"]
+  },
+  {
+    name: "Individual Plan",
+    price: "$9.99/month",
+    features: ["1 person", "Siri on Apple device", "Songs, playlists, stations, videos", "All Apple devices + supported"]
+  },
+  {
+    name: "Family Plan",
+    price: "$14.99/month",
+    features: ["6 people", "Siri on Apple device", "Songs, playlists, stations, videos", "All Apple devices + supported"]
+  }
+];
+
 const Container = styled.div`
   position: fixed;
   width: 90%;
   height: 87vh;
-  ${'' /* left: 20%;
-  top: 92px; */}
   flex: 1;
-  padding: 10px;
+  padding: 20px;
   background-color: rgba(60, 60, 67, 0.18);
   overflow: scroll;
+  display: flex;
+  align-items: center;
+
+  justify-content: center;
 
   .big_container {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    align-items: center;
+    margin-right: 12%;
   }
+
   .logo_container {
-    display: flex;
-    justify-content: center;
+    margin-bottom: 20px;
     .apple_logo {
       height: 100px;
       width: 250px;
     }
   }
+
   .plan_container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    overflow: visible;
-   
 
     .plans {
       background-color: hsla(0, 0%, 100%, 0.92);
-    
       margin: 10px;
-      height: 300px;
-      width: 250px;
+      height: 320px;
+      width: 260px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      line-height: .8;
-    
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: -7px;
+      }
+
+      h3 {
+        font-size: 1.2rem;
+        color: #888;
+        margin-bottom: 3px;
+      }
+
       p {
         font-weight: 500;
+        margin-top: 5px;
+        margin-bottom: 4px;
       }
+
       hr {
         width: 70%;
-        margin-left: 10%;
         height: 2px;
-        background-color: red;
+        background-color: #ff3b3b;
+        margin-bottom: 8px;
       }
-      
+
+      button {
+        background-color: #ff3b3b;
+        margin-top: 20px;
+        color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #e32e2e;
+        }
+      }
     }
-    
   }
 `;

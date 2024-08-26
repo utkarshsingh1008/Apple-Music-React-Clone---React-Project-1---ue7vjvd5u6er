@@ -56,7 +56,7 @@ function Carousel() {
     const settings = {
         infinite: true,
         speed: 500,
-        slidesToShow: 2,
+        slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000, // 3 seconds
@@ -64,7 +64,7 @@ function Carousel() {
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 3,
                     slidesToScroll: 1,
                     infinite: true
                 }
@@ -114,9 +114,9 @@ const carouselItemStyle = {
     textAlign: 'center'
 };
 const carouselImageStyle = {
-    width: '99%',
+    width: '92%',
     height: 'auto',
-    maxHeight: '300px',
+    maxHeight: '275px',
     borderRadius: '20px',
     objectFit: 'cover'
 };

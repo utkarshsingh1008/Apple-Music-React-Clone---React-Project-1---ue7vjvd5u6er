@@ -6,20 +6,20 @@ function Radio() {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      fontSize: '50px',
-      fontWeight: 'bold',
-      textShadow: '2px 2px 4px black',
-      fontFamily: 'Arial, sans-serif',
+      fontSize: '25px',
+      fontWeight: 'semibold',
+      textShadow: '3px 3px 6px rgba(0, 0, 0, 0.5)',
+      fontFamily: 'Verdana, sans-serif',
       textTransform: 'uppercase',
-      letterSpacing: '2px',
-     marginTop:'10%',
+      letterSpacing: '3px',
+      marginTop: '10%',
       userSelect: 'none',
       cursor: 'pointer',
+      color: 'grey', // New color: orange-red
     }}>
-    
-    <h1>Coming Soon....</h1>
+      <h1>Coming Soon....</h1>
     </div>
   )
 }
 
-export default Radio
+export default Radio;

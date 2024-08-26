@@ -156,17 +156,20 @@ function Sidebar({ onItemSelect }) {
                     </ListItem>
                     
                   )}
-                  {localStorage.getItem("token") && ( <ListItem  onClick={() => handleNavigation('/changepassword')} style={{ textDecoration: 'none', color: 'black', fontSize: '18px' }}>
+                  {localStorage.getItem("token") && ( <ListItem button onClick={() => handleNavigation('/changepassword')} style={{ textDecoration: 'none', color: 'black', fontSize: '18px' }}>
                     <ListItemText primary="Change Password" style={{ marginBottom: '12.5px',marginTop:'32.5px' }}/>
                   </ListItem>)}
                  
                 </Grid>
                 <Divider />
                 <Grid item>
-                  <p style={{ marginLeft: '20px',marginTop:'50px', marginBottom:"200px" }}>
-                    <img src={nine} alt="" /> Open in Music <img src={ten} alt="" />
-                  </p>
-                </Grid>
+  <div onClick={()=> navigate('/')} style={{cursor:"pointer", display: 'flex', alignItems: 'center', justifyContent: 'flex-start', margin: '50px 0 200px 20px' }}>
+    <img style={{marginTop:"2px"}} src={nine} alt="" />
+    <p style={{ margin: '0 10px' }}>Open in Music</p>
+    <img style={{marginTop:"5px"}} src={ten} alt="" />
+  </div>
+</Grid>
+
               </List>
             </Grid>
           </Grid>
