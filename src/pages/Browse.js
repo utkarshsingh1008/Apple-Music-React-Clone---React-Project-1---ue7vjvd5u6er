@@ -78,7 +78,7 @@ function Browse() {
 
     return (
         <>
-        <Carousel/>
+        <Carousel />
             
            
 {/*                 

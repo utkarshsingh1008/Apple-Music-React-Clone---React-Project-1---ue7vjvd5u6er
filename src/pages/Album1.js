@@ -57,7 +57,7 @@ function Album() {
       {error && <Typography variant="body1" color="error">{error}</Typography>}
       <Grid container spacing={2} justifyContent="center">
         {albumData.map(album => (
-          <Grid item key={album._id} xs={12} sm={6} md={4} lg={3} sx={{marginBottom:'20px'}}>
+          <Grid style={{marginTop:"5%"}} item key={album._id} xs={12} sm={6} md={4} lg={3} sx={{marginBottom:'20px'}}>
             <MusicCard
               title={album.title}
               thumbnail={album.image}

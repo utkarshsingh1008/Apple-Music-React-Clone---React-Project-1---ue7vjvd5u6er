@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import homeImage from '../assets/homeImage.webp' // Import your CSS file for styling
 import three from '../assets/three.svg'
@@ -28,9 +29,11 @@ const StartPage = () => {
           Try it free
         </button>
         <br/>
-        <a href="https://www.apple.com/apple-music/" className="learn-more-link">
-          Learn More &gt;
-        </a>
+        <div>
+      <Link to="/radio" className="learn-more-link">
+        Learn More &gt;
+      </Link>
+    </div>
       </div>
       <div className="image-container">
         <img

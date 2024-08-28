@@ -102,7 +102,7 @@ function Carousel() {
 const carouselContainerStyle = {
     width: '100%',
     margin: '15px 0',
-    marginTop: '60px',
+    marginTop: '90px',
     position: 'relative',
     padding: '0 10px',
     boxSizing: 'border-box'

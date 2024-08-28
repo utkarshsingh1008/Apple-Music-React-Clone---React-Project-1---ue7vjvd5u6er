@@ -27,7 +27,7 @@ function MusicCard(props) {
                     className="music-title"
                     // align="center"
                     style={{
-                        marginTop: "10px",
+                        marginTop: "13px",
                         textOverflow: "ellipsis", // Sets ellipsis (...) for overflow
                         whiteSpace: "nowrap", // Prevents text wrapping
                         overflow: "hidden",

@@ -55,10 +55,10 @@ function Moods() {
   return (
     <>
       <Typography variant="h3" sx={{ marginLeft: '30px' }}>Moods</Typography>
-      <Box sx={{ display: 'flex',  flexDirection: {
+      <Box sx={{ display: 'flex',justifyContent:"center",  flexDirection: {
       xs: 'column', // apply 'column' for extra-small screens and up
       sm: 'row',    // apply 'row' for small screens and up
-    }, gap: '8px', marginLeft: '30px', marginTop: '20px' }}>
+    }, gap: '8%', marginLeft: '30px', marginTop: '40px' }}>
         <Button variant="contained" style={{ backgroundColor: typeMood === "happy" ? "lightgray" : "" }} onClick={() => onFilterSelection("happy")}>Happy Songs</Button>
         <Button variant="contained" style={{ backgroundColor: typeMood === "sad" ? "lightgray" : "" }} onClick={() => onFilterSelection("sad")}>Sad Songs</Button>
         <Button variant="contained" style={{ backgroundColor: typeMood === "excited" ? "lightgray" : "" }} onClick={() => onFilterSelection("excited")}>Excited Songs</Button>
