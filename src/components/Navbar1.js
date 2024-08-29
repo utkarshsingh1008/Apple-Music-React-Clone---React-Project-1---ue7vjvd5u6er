@@ -224,8 +224,8 @@ const Navbar1 = (props) => {
         style={{
           flexGrow: 1,
           position: "fixed",
-          width: "79%",
-          zIndex: "1",
+          width: window.innerWidth <= 768 ? "100%" : "79%", // Adjusts width based on screen size
+          zIndex: 1,
           top: "0px",
         }}
       >
