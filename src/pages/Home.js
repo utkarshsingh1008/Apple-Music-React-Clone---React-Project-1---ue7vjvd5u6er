@@ -26,7 +26,7 @@ const StartPage = () => {
           className="btn-try-free"
           onClick={() => navigate("/subscription")}
         >
-          Try it free
+          Try it for free
         </button>
         <br/>
         <div>

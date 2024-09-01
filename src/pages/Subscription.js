@@ -1,45 +1,27 @@
 import React from "react";
 import styled from "styled-components";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import three from '../assets/three.svg';
 
 const Subscription = () => {
   const showToast = (message) => {
-    const toastElement = document.createElement('div');
-    toastElement.innerHTML = message;
-  
-    Object.assign(toastElement.style, {
-      position: 'fixed',
-      zIndex: '9999',
-      width: '300px',
-      textAlign: 'center',
-      fontWeight: 'bold',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '150px', // Reduced height for a more compact design
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      backgroundColor: '#333', // Darker background color for a modern look
-      color: '#fff', // White text for contrast
-      padding: '20px', // Increased padding for better spacing
-      borderRadius: '8px', // Slightly rounded corners for a smoother appearance
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)', // Softer shadow for depth
-      fontSize: '16px', // Slightly smaller font size for a balanced look
-      fontFamily: '"Roboto", sans-serif', // Modern font for better readability
-      animation: 'fadeIn 0.3s ease-in-out', // Smooth fade-in animation
+    toast(message, {
+      // position: toast.POSITION.TOP_CENTER,
+      autoClose: 1500, // Toast will be visible for 1.5 seconds
+      style: {
+        backgroundColor: '#333',
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: '16px',
+        fontFamily: '"Roboto", sans-serif',
+        marginTop:"100px"
+      },
+      bodyStyle: {
+        fontWeight: 'bold',
+      },
     });
-  
-    document.body.appendChild(toastElement);
-  
-    setTimeout(() => {
-      toastElement.style.animation = 'fadeOut 0.3s ease-in-out';
-      setTimeout(() => {
-        document.body.removeChild(toastElement);
-      }, 300); // Duration should match fade-out animation
-    }, 1500); // Toast will be visible for 1.5 seconds
   };
-  
 
   return (
     <Container>
@@ -61,6 +43,7 @@ const Subscription = () => {
           ))}
         </div>
       </div>
+      <ToastContainer />
     </Container>
   );
 };
@@ -95,7 +78,6 @@ const Container = styled.div`
   overflow: scroll;
   display: flex;
   align-items: center;
-
   justify-content: center;
 
   .big_container {

@@ -414,7 +414,7 @@ const Navbar1 = (props) => {
         <div className="nav-login">
   <Button onClick={() => {
     if (!localStorage.getItem("token")) {
-      navigate("/signUp"); // Navigate directly to /signUp if not signed in
+      navigate("/login"); // Navigate directly to /signUp if not signed in
     } else {
       handleOpen(); // Open the modal if already signed in
     }
