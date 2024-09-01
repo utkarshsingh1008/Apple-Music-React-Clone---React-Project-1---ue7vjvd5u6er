@@ -73,7 +73,7 @@ function Sidebar({ onItemSelect }) {
     };
     setSearchText(event.target.value);
     try {
-      const response = await axios.get('https://academics.newtonschool.co/api/v1/music/song', {
+      const response = await axios.get ('https://academics.newtonschool.co/api/v1/music/song', {
         params: {
           search: JSON.stringify(queryString)
         },
